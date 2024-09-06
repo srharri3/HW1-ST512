@@ -1,0 +1,102 @@
+# Homework 1
+
+## Savannah Harrison
+
+```{r}
+birthweight <- read.table("birthweight.txt", header = TRUE, stringsAsFactors = TRUE)
+```
+
+```{r}
+slr1 <- lm(bwt ~ diameter, data = birthweight) 
+```
+
+```{r}
+plot(bwt ~ diameter, data = birthweight)
+abline(slr1, col = "red")
+```
+
+```{r}
+summary(slr1)
+```
+
+```{r}
+confint(slr1, level = 0.9)
+```
+
+```{r}
+anova(slr1)
+```
+
+1.  **Intercept: -2.3177 kg, Slope: 0.4934 kg/cm**
+
+2.  **\[0.4267, 0.5601\]**
+
+3.  **Based on this model, on average, the birthweight of the baby that had the larger fetal abdominal diameter will be 0.7401 kg larger than the birthweight of the baby that had the smaller fetal abdominal diameter.**
+
+```{r}
+(-2.31765+(.49337*9.5))-(-2.31765+(.49337*8))
+
+```
+
+4.  **Standard deviation of the errors = 0.2128**
+
+```{r}
+sqrt(.0453)
+```
+
+5.  **Variance of the errors = .0453**
+
+```{r}
+.8161/18
+```
+
+6.  **Coefficient of variation = .9014**
+
+7.  **a. 3.6028 kg**
+
+```{r}
+-2.31765+(0.49337*12)
+```
+
+b)  **\[3.2081, 3.9975\]**
+
+```{r}
+new.data <- data.frame(diameter = 12)
+predict(slr1, interval = "prediction", newdata = new.data, level = .90)
+```
+
+c)  **\[3.4634, 3.7423\]**
+
+```{r}
+predict(slr1, interval = "confidence", newdata = new.data, level = .90)
+```
+
+**y = 576.7-3.01x**
+
+8.  
+
+    a)  **t-statistic = -1.2143, p-value = .236**
+
+```{r}
+(-3.01-(-2.5))/0.42
+```
+
+b)  **C**
+
+c)  **B**
+
+d)  **B is wider than A, C is wider than D**
+
+e)  **-1.0033**
+
+```{r}
+-3.01/3
+```
+
+f)  **0.14**
+
+```{r}
+.42/3
+```
+
+g)  **0.642 (stays the same)**
